@@ -1,0 +1,30 @@
+﻿@model Web.Models.DeletePresentation
+
+<h2>Delete Presentation</h2>
+@if (!ViewContext.ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger" role="alert">
+        @Html.ValidationSummary()
+    </div>
+}
+else
+{
+    using (Html.BeginForm())
+    {
+        @Html.HiddenFor(m => m.Id)
+        @Html.HiddenFor(m => m.Confirmed, new { @value = true})
+        @Html.HiddenFor(m => m.UserId)
+
+        <div class="alert alert-warning" role="alert">
+            <strong>Warning!</strong> Deleting a presentation will also delete any feedback or scheduled talks associated with it. This <strong>cannot</strong> be undone.
+        </div>
+
+        <div class="pull-left">
+            @Html.ActionLink("Cancel", "Presentations", "My", null, new { @class="btn btn-primary"})
+        </div>
+        <div class="text-right">
+            <button type="submit" class="btn btn-danger">Confirm Delete</button>
+        </div>
+        <div class="clearfix"/>
+    }
+}

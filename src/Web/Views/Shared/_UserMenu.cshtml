@@ -1,0 +1,8 @@
+﻿@if (User.Identity.IsAuthenticated)
+{
+    <text>
+        <form class="navbar-form navbar-left" role="search">
+            @Html.ActionLink("New Presentation", "Create", "Presentation", null, new { @class = "btn btn-success btn-sm" })
+        </form>
+    </text>
+}
