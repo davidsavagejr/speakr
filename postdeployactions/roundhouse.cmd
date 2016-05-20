@@ -1,1 +1,1 @@
-src\database\rh.exe -c "%SpeakRDb%" --silent
+src\packages\roundhouse.0.8.6\bin\rh.exe -c "%SpeakRDb%" --silent
