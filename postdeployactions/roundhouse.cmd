@@ -1,1 +1,1 @@
-..\src\database\rh.exe -c %SpeakRDb% --silent
+src\database\rh.exe -c %SpeakRDb% --silent
