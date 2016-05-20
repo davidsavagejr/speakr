@@ -1,0 +1,1 @@
+..\src\database\rh.exe -c %SpeakRDb% --silent
