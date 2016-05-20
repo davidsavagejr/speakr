@@ -19,32 +19,6 @@ Right now there are 3 projects:
 
 In the future we will add an API project that will interact with **Core**
 
-## Backlog ##
-
-If you're helping out with the first release, here are the things we still need to do
-
-## Todo ##
-* Fluent Validation
-* Fix N+1 (check to make sure record is for the current user)
-* SpeakR Codes
-* Giving a Talk
-* Giving Feedback for a Talk
-* Waiting Screen / Lobby for a talk
-* Delete Lectures (Talks)
-* Review Feedback
-* Better display of user profile from Google
-* Automated Deployment with Azure
-* Paging controls on Presentations / Feedback pages
-* Start Talk button on My Presentations page
-* Start Talk button(s) on nav bar
-
-## In progress ##
-* (David) Edit / Delete Presentations
-
-## Done ##
-* (David) Automated Build 
-* (David) Creating Presentation
-
 ## SpeakR Codes ##
 
 Here's how I planned for codes to get generated at the start:
