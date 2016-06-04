@@ -16,9 +16,11 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using AutoMapper;
+using Data;
 using MediatR;
 using NPoco;
 using StructureMap.Pipeline;
+using Web.Config;
 
 namespace Web.DependencyResolution
 {
@@ -47,9 +49,13 @@ namespace Web.DependencyResolution
             For<MultiInstanceFactory>().Use<MultiInstanceFactory>(ctx => t => ctx.GetAllInstances(t));
             For<IMediator>().Use<Mediator>();
 
+            For<IConnectionConfig>()
+                .Use<WebConnectionConfig>()
+                .Singleton();
+
             For<IDatabase>()
                 .LifecycleIs<ThreadLocalStorageLifecycle>()
-                .Use(cfg => new Database("SpeakRDb"));
+                .Use<TransientProtectedDatabase>();
 
             For<MapperConfiguration>()
                 .Use(scope => new MapperConfiguration(AutoMapperConfig.RegisterMappings))
