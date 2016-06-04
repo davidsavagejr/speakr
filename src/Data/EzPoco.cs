@@ -6,7 +6,7 @@
 // 
 //     Connection String Name: `SpeakRDb`
 //     Provider:               `System.Data.SqlClient`
-//     Connection String:      `Data Source=localhost;Initial Catalog=SpeakR;Integrated Security=SSPI;`
+//     Connection String:      `Data Source=.;Initial Catalog=SpeakR;Integrated Security=SSPI;`
 //     Schema:                 ``
 //     Include Views:          `False`
 
