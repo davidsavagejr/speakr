@@ -1,0 +1,1 @@
+powershell.exe .\rh.ps1 %_LOCAL_SQL_INSTANCE%
