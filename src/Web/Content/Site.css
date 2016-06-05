@@ -49,3 +49,8 @@ footer {
 .img-box img {
     padding: 100px;
 }
+
+img.logobutton {
+    width: 20px;
+    height: 20px;
+}
