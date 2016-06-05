@@ -276,6 +276,7 @@
     <Content Include="Views\Presentation\Delete.cshtml" />
     <Content Include="Views\Presentation\Deleted.cshtml" />
     <Content Include="Views\Talk\Index.cshtml" />
+    <Content Include="Views\Shared\_SigninOptions.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

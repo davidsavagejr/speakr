@@ -54,3 +54,9 @@ img.logobutton {
     width: 20px;
     height: 20px;
 }
+.list-inline li.disabled {
+    cursor: not-allowed;
+}
+.list-inline li.disabled img {
+    cursor: not-allowed;
+}

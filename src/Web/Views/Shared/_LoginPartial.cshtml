@@ -25,18 +25,6 @@
 else
 {
     <ul class="nav navbar-nav navbar-right">
-        <li><a alt="Sign In with Google" href="https://speakr.azurewebsites.net/.auth/login/google?post_login_redirect_url=/"><img src="/Images/google.png" class="logobutton"/></a></li>
-        @*
-        ENABLE ONCE THESE ARE SETUP
-        <li><a alt="Sign In with Facebook" href="#"><img src="/Images/facebook.png" class="logobutton" /></a></li>
-        <li><a alt="Sign In with Twitter" href="#"><img src="/Images/twitter.png" class="logobutton"/></a></li>*@
-        @if (Web.Config.Settings.UserDebug)
-        {
-            <li>
-                <a href="@Url.Action("SignIn", "Account")">
-                    <span class="glyphicon glyphicon-user" title="Test With Authenticated User"></span>
-                </a>
-            </li>
-        }
+        @Html.Partial("_SigninOptions")
     </ul>
 }
