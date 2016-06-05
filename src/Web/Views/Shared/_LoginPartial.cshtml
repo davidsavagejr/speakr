@@ -7,15 +7,24 @@
             <li class="navbar-text">
                 <span class="label label-default">@User.Identity.Name</span>
             </li>
+            @if (Web.Config.Settings.UserDebug)
+            {
             <li>
-                @Html.ActionLink("Sign out", "SignOut", "Account")
+                @Html.ActionLink("Sign Out", "SignOut", "Account")
             </li>
+            }
+            else
+            {
+            <li>
+                <a href="https://speakr.azurewebsites.net/.auth/logout?post_login_redirect_url=/">Sign Out</a>
+            </li>
+            }
         </ul>
     </text>
 }
 else
 {
     <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Sign in", "SignIn", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        @Html.Partial("_SigninOptions")
     </ul>
 }

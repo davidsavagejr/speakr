@@ -2,7 +2,6 @@
 using AutoMapper;
 using Core.Requests;
 using MediatR;
-using Models;
 using Web.Models;
 
 namespace Web.Controllers
