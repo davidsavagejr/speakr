@@ -20,6 +20,7 @@ using AutoMapper;
 using Data;
 using MediatR;
 using NPoco;
+using NPoco.SqlAzure;
 using StructureMap.Pipeline;
 using Web.Config;
 
@@ -56,7 +57,7 @@ namespace Web.DependencyResolution
 
             For<IDatabase>()
                 .LifecycleIs<ThreadLocalStorageLifecycle>()
-                .Use<TransientProtectedDatabase>();
+                .Use(ctx => new SqlAzureDatabase(ctx.GetInstance<IConnectionConfig>().ConnectionString, DatabaseType.SqlServer2012));
 
             For<MapperConfiguration>()
                 .Use(scope => new MapperConfiguration(AutoMapperConfig.RegisterMappings))
