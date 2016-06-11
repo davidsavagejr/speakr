@@ -9,9 +9,8 @@
             </li>
             @if (Web.Config.Settings.UserDebug)
             {
-            <li>
-                @Html.ActionLink("Sign Out", "SignOut", "Account")
-            </li>
+            <li>@Html.ActionLink("Claims", "Claims", "My")</li>
+            <li>@Html.ActionLink("Sign Out", "SignOut", "Account")</li>
             }
             else
             {

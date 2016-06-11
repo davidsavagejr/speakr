@@ -16,13 +16,23 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System.Configuration;
+using System.Data.Common;
+using System.Data.SqlClient;
+using System.Security.Claims;
+using System.Web;
 using AutoMapper;
+using Core.Features.Codes;
+using Core.Security;
 using Data;
 using MediatR;
 using NPoco;
 using NPoco.SqlAzure;
+using StackExchange.Profiling;
+using StackExchange.Profiling.Data;
+using StructureMap;
 using StructureMap.Pipeline;
 using Web.Config;
+using Web.Models;
 
 namespace Web.DependencyResolution
 {
@@ -57,13 +67,17 @@ namespace Web.DependencyResolution
 
             For<IDatabase>()
                 .LifecycleIs<ThreadLocalStorageLifecycle>()
-                .Use(ctx => new SqlAzureDatabase(ctx.GetInstance<IConnectionConfig>().ConnectionString, DatabaseType.SqlServer2012));
+                .Use(ctx => new SqlAzureDatabase(ctx.GetInstance<IConnectionConfig>().ConnectionString));
 
             For<MapperConfiguration>()
                 .Use(scope => new MapperConfiguration(AutoMapperConfig.RegisterMappings))
                 .Singleton();
 
             For<AutoMapper.IMapper>().Use(scope => scope.GetInstance<MapperConfiguration>().CreateMapper());
+
+            For<IUser>()
+                .LifecycleIs<ThreadLocalStorageLifecycle>()
+                .Use(ctx => new WebUser(HttpContext.Current.User.Identity as ClaimsIdentity));
         }
     }
 }

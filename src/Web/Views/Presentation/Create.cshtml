@@ -7,7 +7,6 @@
 @using (Html.BeginForm())
 {
     @Html.HiddenFor(m => m.Id)
-    @Html.HiddenFor(m => m.UserId)
 
     <div class="form-group container">
         @Html.TextBoxFor(m => m.Name, new {@class = "form-control", placeholder = "My New Talk"})

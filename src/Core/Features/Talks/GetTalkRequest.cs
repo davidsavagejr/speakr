@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Models;
 
-namespace Core.Requests
+namespace Core.Features.Talks
 {
     public class GetTalkRequest : IRequest<Talk>
     {

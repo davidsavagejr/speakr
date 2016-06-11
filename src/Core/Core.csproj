@@ -50,6 +50,7 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -58,19 +59,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Handlers\CreatePresentationHandler.cs" />
-    <Compile Include="Handlers\DeletePresentationHandler.cs" />
-    <Compile Include="Handlers\GetLectureRequestHandler.cs" />
-    <Compile Include="Handlers\GetMyPresentationsHandler.cs" />
-    <Compile Include="Handlers\GetUserDataHandler.cs" />
+    <Compile Include="Features\Codes\CodeGenerator.cs" />
+    <Compile Include="Features\Codes\ICodeGenerator.cs" />
+    <Compile Include="Features\Presentations\CreatePresentationRequestHandler.cs" />
+    <Compile Include="Features\Presentations\DeletePresentationRequestHandler.cs" />
+    <Compile Include="Features\Talks\CreateTalkRequest.cs" />
+    <Compile Include="Features\Talks\CreateTalkRequestHandler.cs" />
+    <Compile Include="Features\Talks\GetTalkRequestHandler.cs" />
+    <Compile Include="Features\Presentations\GetMyPresentationsRequestHandler.cs" />
+    <Compile Include="Features\Users\GetUserDataRequestHandler.cs" />
     <Compile Include="MappingProfile.cs" />
     <Compile Include="Models\UserData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Requests\CreatePresentationRequest.cs" />
-    <Compile Include="Requests\DeletePresentationRequest.cs" />
-    <Compile Include="Requests\GetTalkRequest.cs" />
-    <Compile Include="Requests\GetMyPresentationsRequest.cs" />
-    <Compile Include="Requests\GetUserDataRequest.cs" />
+    <Compile Include="Features\Presentations\CreatePresentationRequest.cs" />
+    <Compile Include="Features\Presentations\DeletePresentationRequest.cs" />
+    <Compile Include="Features\Talks\GetTalkRequest.cs" />
+    <Compile Include="Features\Presentations\GetMyPresentationsRequest.cs" />
+    <Compile Include="Features\Users\GetUserDataRequest.cs" />
+    <Compile Include="Security\IUser.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Data\Data.csproj">

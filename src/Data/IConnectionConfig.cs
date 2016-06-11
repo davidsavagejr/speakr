@@ -1,4 +1,6 @@
-﻿namespace Data
+﻿using System.Data.Common;
+
+namespace Data
 {
     public interface IConnectionConfig
     {

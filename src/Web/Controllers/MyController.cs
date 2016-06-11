@@ -1,7 +1,9 @@
 ﻿using System.Linq;
+using System.Security.Claims;
 using System.Web.Mvc;
-using Core.Requests;
+using Core.Features.Presentations;
 using MediatR;
+using Web.Filters;
 
 namespace Web.Controllers
 {
@@ -17,12 +19,19 @@ namespace Web.Controllers
         [Authorize]
         public ActionResult Presentations()
         {
-            var presentations = _mediator.Send(new GetMyPresentationsRequest(User.Identity.Name));
+            var presentations = _mediator.Send(new GetMyPresentationsRequest());
 
             if (!presentations.Any())
                 return RedirectToAction("Create", "Presentation");
 
             return View(presentations);
+        }
+
+        [Authorize, LocalOnly]
+        public ActionResult Claims()
+        {
+            var claims = (User.Identity as ClaimsIdentity)?.Claims;
+            return View(claims);
         }
     }
 }
