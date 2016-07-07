@@ -11,5 +11,6 @@ namespace Core.Features.Talks
         }
 
         public string Code { get; set; }
+        
     }
 }

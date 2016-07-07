@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
 using Core.Security;
 using MediatR;
+using Models;
 using NPoco;
 
 namespace Core.Features.Presentations
 {
-    public class GetMyPresentationsRequestHandler : IRequestHandler<GetMyPresentationsRequest, List<global::Models.Presentation>>
+    public class GetMyPresentationsRequestHandler : IRequestHandler<GetMyPresentationsRequest, List<Presentation>>
     {
         private readonly IDatabase _database;
         private readonly IUser _user;
@@ -16,10 +17,10 @@ namespace Core.Features.Presentations
             _user = user;
         }
 
-        public List<global::Models.Presentation> Handle(GetMyPresentationsRequest message)
+        public List<Presentation> Handle(GetMyPresentationsRequest message)
         {
-            var presentations = _database.Fetch<global::Models.Presentation>("WHERE [User] LIKE @0", _user.NameIdentifier) ??
-                                new List<global::Models.Presentation>();
+            var presentations = _database.Fetch<Presentation>("WHERE [User] LIKE @0", _user.KeyForRecords) ??
+                                new List<Presentation>();
 
             return presentations;
         }

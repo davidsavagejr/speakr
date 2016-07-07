@@ -19,6 +19,7 @@ namespace Web.Models
         public string Name => GetClaim(ClaimTypes.Name);
         public string GivenName => GetClaim(ClaimTypes.GivenName);
         public string SurName => GetClaim(ClaimTypes.Surname);
+        public string KeyForRecords => NameIdentifier;
 
         private string GetClaim(string typ)
         {

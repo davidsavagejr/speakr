@@ -65,8 +65,12 @@
     <Compile Include="Features\Presentations\DeletePresentationRequestHandler.cs" />
     <Compile Include="Features\Talks\CreateTalkRequest.cs" />
     <Compile Include="Features\Talks\CreateTalkRequestHandler.cs" />
+    <Compile Include="Features\Talks\GetTalkControlsRequest.cs" />
+    <Compile Include="Features\Talks\GetTalkControlsRequestHandler.cs" />
     <Compile Include="Features\Talks\GetTalkRequestHandler.cs" />
     <Compile Include="Features\Presentations\GetMyPresentationsRequestHandler.cs" />
+    <Compile Include="Features\Talks\StartTalkRequest.cs" />
+    <Compile Include="Features\Talks\StartTalkRequestHandler.cs" />
     <Compile Include="Features\Users\GetUserDataRequestHandler.cs" />
     <Compile Include="MappingProfile.cs" />
     <Compile Include="Models\UserData.cs" />
@@ -77,6 +81,7 @@
     <Compile Include="Features\Presentations\GetMyPresentationsRequest.cs" />
     <Compile Include="Features\Users\GetUserDataRequest.cs" />
     <Compile Include="Security\IUser.cs" />
+    <Compile Include="CommonSql\Talks.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Data\Data.csproj">

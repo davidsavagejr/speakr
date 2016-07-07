@@ -24,7 +24,7 @@ namespace Core.Features.Presentations
                 throw new UnauthorizedAccessException("Cannot create presentation without an authenticated user");
 
             var presentation = _mapper.Map<global::Models.Presentation>(message);
-            presentation.User = _user.NameIdentifier;
+            presentation.User = _user.KeyForRecords;
             presentation.DateCreated = DateTime.UtcNow;
 
             _database.Insert(presentation);

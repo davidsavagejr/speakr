@@ -1,7 +1,6 @@
 ﻿using System.Web.Mvc;
 using Core.Features.Talks;
 using MediatR;
-using Web.Models;
 
 namespace Web.Controllers
 {
@@ -14,6 +13,7 @@ namespace Web.Controllers
             _mediator = mediator;
         }
 
+        [Authorize]
         public ActionResult Create(long? presentationid)
         {
             if(!presentationid.HasValue)
@@ -40,9 +40,26 @@ namespace Web.Controllers
             return View(talk);
         }
 
+        [Authorize]
         public ActionResult Controls(long? id)
         {
-            return View();
+            var talk = _mediator.Send(new GetTalkControlsRequest(id));
+            if (talk == null)
+                return RedirectToAction("Index", "Home");
+
+            return View(talk);
+        }
+
+        [Authorize]
+        public ActionResult Start(long? id)
+        {
+            var talk = _mediator.Send(new GetTalkControlsRequest(id));
+            if (talk == null)
+                return RedirectToAction("Index", "Home");
+
+            _mediator.Send(new StartTalkRequest(id));
+
+            return RedirectToAction("Controls", new { id });
         }
     }
 }

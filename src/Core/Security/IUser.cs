@@ -8,5 +8,9 @@
         string Name { get; }
         string GivenName { get; }
         string SurName { get; }
+        /// <summary>
+        /// Value to use for associating any records with the user
+        /// </summary>
+        string KeyForRecords { get; }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using Core.Security;
 using MediatR;
+using Models;
 using NPoco;
 
 namespace Core.Features.Presentations
@@ -20,7 +21,7 @@ namespace Core.Features.Presentations
         {
             _database.BeginTransaction();
 
-            var presentation = _database.SingleOrDefault<global::Models.Presentation>("WHERE id = @0 AND [User] LIKE @1", message.Id, _user.NameIdentifier);
+            var presentation = _database.SingleOrDefault<Presentation>("WHERE id = @0 AND [User] LIKE @1", message.Id, _user.KeyForRecords);
             if (presentation == null)
                 return;
 

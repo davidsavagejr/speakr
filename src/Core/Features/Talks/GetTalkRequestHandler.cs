@@ -1,9 +1,10 @@
 ﻿using MediatR;
+using Models;
 using NPoco;
 
 namespace Core.Features.Talks
 {
-    public class GetTalkRequestHandler : IRequestHandler<GetTalkRequest, global::Models.Talk>
+    public class GetTalkRequestHandler : IRequestHandler<GetTalkRequest, Talk>
     {
         private readonly IDatabase _database;
 
@@ -12,9 +13,9 @@ namespace Core.Features.Talks
             _database = database;
         }
 
-        public global::Models.Talk Handle(GetTalkRequest message)
+        public Talk Handle(GetTalkRequest message)
         {
-            return _database.FirstOrDefault<global::Models.Talk>("WHERE Code LIKE @0", message.Code);
+            return _database.FirstOrDefault<Talk>("WHERE Code LIKE @0", message.Code);
         }
     }
 }

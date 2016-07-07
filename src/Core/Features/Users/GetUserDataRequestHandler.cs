@@ -21,13 +21,13 @@ namespace Core.Features.Users
             var data = new UserData();
 
             data.PresentationCount =
-                _database.SingleOrDefault<int>("SELECT COUNT(*) FROM Presentation WHERE [User] LIKE @0", _user.NameIdentifier);
+                _database.SingleOrDefault<int>("SELECT COUNT(*) FROM Presentation WHERE [User] LIKE @0", _user.KeyForRecords);
 
             data.FeedbackCount =
                 _database.SingleOrDefault<int>(@"SELECT COUNT(*) FROM Feedback f
                                                 INNER JOIN Talk t on t.Id = f.TalkId
                                                 INNER JOIN Presentation p on p.Id = t.PresentationId
-                                                WHERE p.[User] LIKE @0", _user.NameIdentifier);
+                                                WHERE p.[User] LIKE @0", _user.KeyForRecords);
 
             return data;
         }
