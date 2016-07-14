@@ -1,6 +1,7 @@
 ﻿using System;
 using Core.Security;
 using MediatR;
+using Models;
 using NPoco;
 
 namespace Core.Features.Presentations
@@ -9,22 +10,19 @@ namespace Core.Features.Presentations
     {
         private readonly IDatabase _database;
         private readonly AutoMapper.IMapper _mapper;
-        private readonly IUser _user;
+        private readonly IUser _currentUser;
 
-        public CreatePresentationRequestHandler(IDatabase database, AutoMapper.IMapper mapper, IUser user)
+        public CreatePresentationRequestHandler(IDatabase database, AutoMapper.IMapper mapper, IUser currentUser)
         {
             _database = database;
             _mapper = mapper;
-            _user = user;
+            _currentUser = currentUser;
         }
 
         public long Handle(CreatePresentationRequest message)
         {
-            if (_user == null)
-                throw new UnauthorizedAccessException("Cannot create presentation without an authenticated user");
-
-            var presentation = _mapper.Map<global::Models.Presentation>(message);
-            presentation.User = _user.KeyForRecords;
+            var presentation = _mapper.Map<Presentation>(message);
+            presentation.User = _currentUser.KeyForRecords;
             presentation.DateCreated = DateTime.UtcNow;
 
             _database.Insert(presentation);

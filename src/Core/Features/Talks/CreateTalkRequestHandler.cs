@@ -11,19 +11,19 @@ namespace Core.Features.Talks
     public class CreateTalkRequestHandler : IRequestHandler<CreateTalkRequest, long?>
     {
         private readonly IDatabase _database;
-        private readonly IUser _user;
+        private readonly IUser _currentUser;
         private readonly ICodeGenerator _codeGenerator;
 
-        public CreateTalkRequestHandler(IDatabase database, IUser user, ICodeGenerator codeGenerator)
+        public CreateTalkRequestHandler(IDatabase database, IUser currentUser, ICodeGenerator codeGenerator)
         {
             _database = database;
-            _user = user;
+            _currentUser = currentUser;
             _codeGenerator = codeGenerator;
         }
 
         public long? Handle(CreateTalkRequest message)
         {
-            var presentation = _database.FirstOrDefault<Presentation>("WHERE [User] LIKE @0 AND Id = @1", _user.KeyForRecords, message.PresentationId);
+            var presentation = _database.FirstOrDefault<Presentation>("WHERE [User] LIKE @0 AND Id = @1", _currentUser.KeyForRecords, message.PresentationId);
             if (presentation == null)
                 return null;
 

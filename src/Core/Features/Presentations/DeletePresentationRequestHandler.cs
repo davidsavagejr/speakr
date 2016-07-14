@@ -9,19 +9,19 @@ namespace Core.Features.Presentations
     public class DeletePresentationRequestHandler : RequestHandler<DeletePresentationRequest>
     {
         private readonly IDatabase _database;
-        private readonly IUser _user;
+        private readonly IUser _currentUser;
 
-        public DeletePresentationRequestHandler(IDatabase database, IUser user)
+        public DeletePresentationRequestHandler(IDatabase database, IUser currentUser)
         {
             _database = database;
-            _user = user;
+            _currentUser = currentUser;
         }
 
         protected override void HandleCore(DeletePresentationRequest message)
         {
             _database.BeginTransaction();
 
-            var presentation = _database.SingleOrDefault<Presentation>("WHERE id = @0 AND [User] LIKE @1", message.Id, _user.KeyForRecords);
+            var presentation = _database.SingleOrDefault<Presentation>("WHERE id = @0 AND [User] LIKE @1", message.Id, _currentUser.KeyForRecords);
             if (presentation == null)
                 return;
 

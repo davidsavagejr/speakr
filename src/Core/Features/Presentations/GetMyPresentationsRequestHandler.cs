@@ -9,17 +9,17 @@ namespace Core.Features.Presentations
     public class GetMyPresentationsRequestHandler : IRequestHandler<GetMyPresentationsRequest, List<Presentation>>
     {
         private readonly IDatabase _database;
-        private readonly IUser _user;
+        private readonly IUser _currentUser;
 
-        public GetMyPresentationsRequestHandler(IDatabase database, IUser user)
+        public GetMyPresentationsRequestHandler(IDatabase database, IUser currentUser)
         {
             _database = database;
-            _user = user;
+            _currentUser = currentUser;
         }
 
         public List<Presentation> Handle(GetMyPresentationsRequest message)
         {
-            var presentations = _database.Fetch<Presentation>("WHERE [User] LIKE @0", _user.KeyForRecords) ??
+            var presentations = _database.Fetch<Presentation>("WHERE [User] LIKE @0", _currentUser.KeyForRecords) ??
                                 new List<Presentation>();
 
             return presentations;
