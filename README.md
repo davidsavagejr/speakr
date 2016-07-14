@@ -5,8 +5,9 @@ SpeakR is an R&D project on how to facilitate feedback for public speakers.
 ## Contributing ##
 
 If you want to contribute, check with me first about what to work on.
-
 Otherwise, you can branch/fork then submit a PR
+
+Check out the wiki for [getting your dev environment setup](https://github.com/HeadspringLabs/speakr/wiki/Development-Environment).
 
 ## Understanding the Project Structure ##
 
