@@ -1,25 +1,28 @@
 ﻿using System;
-using Core.Requests;
+using Core.Security;
 using MediatR;
 using Models;
 using NPoco;
 
-namespace Core.Handlers
+namespace Core.Features.Presentations
 {
-    public class CreatePresentationHandler : IRequestHandler<CreatePresentationRequest, long>
+    public class CreatePresentationRequestHandler : IRequestHandler<CreatePresentationRequest, long>
     {
         private readonly IDatabase _database;
         private readonly AutoMapper.IMapper _mapper;
+        private readonly IUser _currentUser;
 
-        public CreatePresentationHandler(IDatabase database, AutoMapper.IMapper mapper)
+        public CreatePresentationRequestHandler(IDatabase database, AutoMapper.IMapper mapper, IUser currentUser)
         {
             _database = database;
             _mapper = mapper;
+            _currentUser = currentUser;
         }
 
         public long Handle(CreatePresentationRequest message)
         {
             var presentation = _mapper.Map<Presentation>(message);
+            presentation.User = _currentUser.KeyForRecords;
             presentation.DateCreated = DateTime.UtcNow;
 
             _database.Insert(presentation);

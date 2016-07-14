@@ -1,25 +1,27 @@
 ﻿using System.Linq;
-using Core.Requests;
+using Core.Security;
 using MediatR;
 using Models;
 using NPoco;
 
-namespace Core.Handlers
+namespace Core.Features.Presentations
 {
-    public class DeletePresentationHandler : RequestHandler<DeletePresentationRequest>
+    public class DeletePresentationRequestHandler : RequestHandler<DeletePresentationRequest>
     {
         private readonly IDatabase _database;
+        private readonly IUser _currentUser;
 
-        public DeletePresentationHandler(IDatabase database)
+        public DeletePresentationRequestHandler(IDatabase database, IUser currentUser)
         {
             _database = database;
+            _currentUser = currentUser;
         }
 
         protected override void HandleCore(DeletePresentationRequest message)
         {
             _database.BeginTransaction();
 
-            var presentation = _database.SingleOrDefault<Presentation>("WHERE id = @0 AND [User] LIKE @1", message.Id, message.UserId);
+            var presentation = _database.SingleOrDefault<Presentation>("WHERE id = @0 AND [User] LIKE @1", message.Id, _currentUser.KeyForRecords);
             if (presentation == null)
                 return;
 

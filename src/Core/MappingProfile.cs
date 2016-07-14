@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Core.Requests;
+using Core.Features.Presentations;
 using Models;
 
 namespace Core
@@ -8,8 +8,8 @@ namespace Core
     {
         protected override void Configure()
         {
-            CreateMap<CreatePresentationRequest, Presentation>()
-                .ForMember(m => m.User, m => m.MapFrom(src => src.UserId));
+            CreateMap<CreatePresentationRequest, Presentation>();
+
         }
     }
 }

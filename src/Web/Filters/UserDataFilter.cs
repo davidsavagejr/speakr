@@ -1,5 +1,5 @@
 ﻿using System.Web.Mvc;
-using Core.Requests;
+using Core.Features.Users;
 using MediatR;
 
 namespace Web.Filters
@@ -21,7 +21,7 @@ namespace Web.Filters
                 return;
 
             // Cache this later
-            var data = _mediator.Send(new GetUserDataRequest(filterContext.HttpContext.User.Identity.Name));
+            var data = _mediator.Send(new GetUserDataRequest());
             if (data == null)
                 return;
 

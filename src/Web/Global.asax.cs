@@ -1,11 +1,10 @@
-﻿using System.Configuration;
-using System.Security.Claims;
-using System.Security.Principal;
+﻿using System.Security.Principal;
 using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using StackExchange.Profiling;
 using Web.DependencyResolution;
 
 namespace Web
@@ -29,6 +28,22 @@ namespace Web
 
             HttpContext.Current.User = DebugUser;
             Thread.CurrentPrincipal = DebugUser;
+        }
+
+        protected void Application_BeginRequest()
+        {
+            if (Config.Settings.MiniProfiler)
+            {
+                MiniProfiler.Start();
+            }
+        }
+
+        protected void Application_EndRequest()
+        {
+            if (Config.Settings.MiniProfiler)
+            {
+                MiniProfiler.Stop();
+            }
         }
     }
 }

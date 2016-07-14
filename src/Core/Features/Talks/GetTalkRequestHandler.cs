@@ -1,15 +1,14 @@
-﻿using Core.Requests;
-using MediatR;
+﻿using MediatR;
 using Models;
 using NPoco;
 
-namespace Core.Handlers
+namespace Core.Features.Talks
 {
-    public class GetLectureRequestHandler : IRequestHandler<GetTalkRequest, Talk>
+    public class GetTalkRequestHandler : IRequestHandler<GetTalkRequest, Talk>
     {
         private readonly IDatabase _database;
 
-        public GetLectureRequestHandler(IDatabase database)
+        public GetTalkRequestHandler(IDatabase database)
         {
             _database = database;
         }

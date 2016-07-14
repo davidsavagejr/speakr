@@ -1,6 +1,7 @@
 ﻿using System.Web.Mvc;
 using AutoMapper;
-using Core.Requests;
+using Core.Features.Presentations;
+using Core.Features.Talks;
 using MediatR;
 using Web.Models;
 
@@ -29,7 +30,7 @@ namespace Web.Controllers
         [Authorize]
         public ActionResult Create()
         {
-            var model = new Models.Presentation {UserId = User.Identity.Name};
+            var model = new Presentation();
             return View(model);    
         }
 

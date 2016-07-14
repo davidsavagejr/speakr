@@ -1,7 +1,6 @@
 ﻿using System.Web.Mvc;
-using Core.Requests;
+using Core.Features.Talks;
 using MediatR;
-using Web.Models;
 
 namespace Web.Controllers
 {
@@ -14,14 +13,23 @@ namespace Web.Controllers
             _mediator = mediator;
         }
 
-        public ActionResult Create(PresentationCreated presentationid)
+        [Authorize]
+        public ActionResult Create(long? presentationid)
         {
-            throw new System.NotImplementedException();
+            if(!presentationid.HasValue)
+                return RedirectToAction("Presentations", "My");
+
+            var talkId = _mediator.Send(new CreateTalkRequest(presentationid.Value));
+            if(!talkId.HasValue)
+                return RedirectToAction("Presentations", "My");
+
+            return RedirectToAction("Controls", new {id = talkId});
+
         }
 
         public ActionResult Index(string code)
         {
-            if (string.IsNullOrEmpty(code) || code.Length != 6)
+            if (string.IsNullOrEmpty(code) || code.Length != 5)
                 return RedirectToAction("Index", "Home");
 
             var talk = _mediator.Send(new GetTalkRequest(code));
@@ -30,6 +38,43 @@ namespace Web.Controllers
                 return RedirectToAction("Index", "Home");
 
             return View(talk);
+        }
+
+        [Authorize]
+        public ActionResult Controls(long? id)
+        {
+            var talk = _mediator.Send(new GetTalkControlsRequest(id));
+            if (talk == null)
+                return RedirectToAction("Index", "Home");
+
+            return View(talk);
+        }
+
+        [Authorize]
+        public ActionResult Start(long? id)
+        {
+            var talk = _mediator.Send(new GetTalkControlsRequest(id));
+            if (talk == null)
+                return RedirectToAction("Index", "Home");
+
+            _mediator.Send(new StartTalkRequest(id));
+
+            if(talk.EndDate.HasValue)
+                return RedirectToAction("Index", "Home");
+
+            return RedirectToAction("Controls", new { id });
+        }
+
+        [Authorize]
+        public ActionResult Complete(long? id)
+        {
+            var talk = _mediator.Send(new GetTalkControlsRequest(id));
+            if (talk == null)
+                return RedirectToAction("Index", "Home");
+
+            _mediator.Send(new CompleteTalkRequest(id));
+
+            return RedirectToAction("Index", "Home");
         }
     }
 }
