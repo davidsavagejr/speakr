@@ -10,7 +10,7 @@ Otherwise, you can branch/fork then submit a PR
 
 ## Understanding the Project Structure ##
 
-Right now there are 3 projects:
+Right now there are 4 projects:
 
 * **Web** - this is the UI
 * **Core** - all of the request handlers / requests.  There shouldn't be any models in here; instead, put properties on the request object and use Automapper to go from the request -> data model
@@ -18,14 +18,3 @@ Right now there are 3 projects:
 * **Test** - unit tests project
 
 In the future we will add an API project that will interact with **Core**
-
-## SpeakR Codes ##
-
-Here's how I planned for codes to get generated at the start:
-
-1. Use Rustflakes to generate a random unique integer
-1. Convert the integer to hex
-1. This should be unique enough to start
-
-The request handler should be smart enough to generate the codes.
-It's probably better for the codes to live in a separate table and be generated ahead of time so it's really just about picking one from the system.
