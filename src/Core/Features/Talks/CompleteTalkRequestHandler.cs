@@ -6,26 +6,24 @@ using NPoco;
 
 namespace Core.Features.Talks
 {
-    public class StartTalkRequestHandler : RequestHandler<StartTalkRequest>
+    public class CompleteTalkRequestHandler : RequestHandler<CompleteTalkRequest>
     {
         private readonly IDatabase _database;
         private readonly IUser _currentUser;
 
-        public StartTalkRequestHandler(IDatabase database, IUser currentUser)
+        public CompleteTalkRequestHandler(IDatabase database, IUser currentUser)
         {
             _database = database;
             _currentUser = currentUser;
         }
 
-        protected override void HandleCore(StartTalkRequest message)
+        protected override void HandleCore(CompleteTalkRequest message)
         {
             var talk = _database.SingleOrDefault<Talk>(CommonSql.Talks.GetTalkForOwner, _currentUser.KeyForRecords, message.Id);
             if (talk == null)
                 return;
 
-            talk.IsStarted = true;
-            talk.StartDate = DateTime.UtcNow;
-
+            talk.EndDate = DateTime.UtcNow;
             _database.Update(talk);
         }
     }

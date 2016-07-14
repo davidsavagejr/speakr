@@ -9,7 +9,7 @@ namespace Web.Extensions
 
         public static long ToJavaScriptMilliseconds(this DateTime dt)
         {
-            return (long)((dt.ToUniversalTime().Ticks - DatetimeMinTimeTicks) / 10000);
+            return (long)((dt.Ticks - DatetimeMinTimeTicks) / 10000);
         }
     }
 }

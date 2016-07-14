@@ -5,7 +5,8 @@
     @if (Model.IsStarted)
     {
         <script type="text/javascript">
-            var timerStart = new Date(@Model.StartDate.Value.ToJavaScriptMilliseconds());
+            var startDate = new Date(@Model.StartDate.Value.ToJavaScriptMilliseconds());
+            var timerStart = new Date(startDate.toLocaleString());
             $(document).ready(function() {
                 show();
                 start();

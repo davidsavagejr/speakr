@@ -59,7 +59,22 @@ namespace Web.Controllers
 
             _mediator.Send(new StartTalkRequest(id));
 
+            if(talk.EndDate.HasValue)
+                return RedirectToAction("Index", "Home");
+
             return RedirectToAction("Controls", new { id });
+        }
+
+        [Authorize]
+        public ActionResult Complete(long? id)
+        {
+            var talk = _mediator.Send(new GetTalkControlsRequest(id));
+            if (talk == null)
+                return RedirectToAction("Index", "Home");
+
+            _mediator.Send(new CompleteTalkRequest(id));
+
+            return RedirectToAction("Index", "Home");
         }
     }
 }

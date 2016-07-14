@@ -63,8 +63,12 @@
     <Compile Include="Features\Codes\ICodeGenerator.cs" />
     <Compile Include="Features\Presentations\CreatePresentationRequestHandler.cs" />
     <Compile Include="Features\Presentations\DeletePresentationRequestHandler.cs" />
+    <Compile Include="Features\Talks\CompleteTalkRequest.cs" />
+    <Compile Include="Features\Talks\CompleteTalkRequestHandler.cs" />
     <Compile Include="Features\Talks\CreateTalkRequest.cs" />
     <Compile Include="Features\Talks\CreateTalkRequestHandler.cs" />
+    <Compile Include="Features\Talks\GetCompletedTalksRequest.cs" />
+    <Compile Include="Features\Talks\GetCompletedTalksRequestHandler.cs" />
     <Compile Include="Features\Talks\GetTalkControlsRequest.cs" />
     <Compile Include="Features\Talks\GetTalkControlsRequestHandler.cs" />
     <Compile Include="Features\Talks\GetTalkRequestHandler.cs" />

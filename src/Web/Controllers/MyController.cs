@@ -2,6 +2,7 @@
 using System.Security.Claims;
 using System.Web.Mvc;
 using Core.Features.Presentations;
+using Core.Features.Talks;
 using MediatR;
 using Web.Filters;
 
@@ -27,11 +28,21 @@ namespace Web.Controllers
             return View(presentations);
         }
 
+        [Authorize]
+        public ActionResult Feedback()
+        {
+            var completedTalks = _mediator.Send(new GetCompletedTalksRequest());
+
+            return View(completedTalks);
+        }
+
         [Authorize, LocalOnly]
         public ActionResult Claims()
         {
             var claims = (User.Identity as ClaimsIdentity)?.Claims;
             return View(claims);
         }
+
+        
     }
 }

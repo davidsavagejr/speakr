@@ -263,6 +263,7 @@
     <Content Include="Images\twitter.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\global.js" />
     <Content Include="Scripts\jquery-2.2.0.js" />
     <Content Include="Scripts\jquery-2.2.0.min.js" />
     <Content Include="Scripts\jquery-2.2.0.min.map" />
@@ -304,6 +305,7 @@
     <Content Include="Views\Shared\_SigninOptions.cshtml" />
     <Content Include="Views\My\Claims.cshtml" />
     <Content Include="Views\Talk\Controls.cshtml" />
+    <Content Include="Views\My\Feedback.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

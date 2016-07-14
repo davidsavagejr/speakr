@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Models.Talk>
+    @{
+        ViewBag.Title = "Feedback";
+    }
+
+    <h2>Feedback</h2>
+
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <th></th>
+        <th>Talk</th>
+        <th>Given On</th>
+        <th>Length</th>
+        <th>Feedback</th>
+    </tr>
+    </thead>
+    <tbody>
+        @foreach (var talk in Model)
+        {
+            <tr>
+                <td></td>
+                <td></td>
+                <td>@talk.StartDate.Value.Date</td>
+                <td>@talk.EndDate.Value.Subtract(talk.StartDate.Value).ToString("g")</td>
+                <td>0</td>
+            </tr>
+        }
+    </tbody>
+</table>
