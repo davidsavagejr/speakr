@@ -3,7 +3,7 @@ using System.Linq;
 using Core.Features.Codes;
 using Core.Security;
 using MediatR;
-using Models;
+using Data.Models;
 using NPoco;
 
 namespace Core.Features.Talks

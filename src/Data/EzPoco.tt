@@ -2,7 +2,7 @@
 <#
 	// Settings
     ConnectionStringName = "SpeakRDb";			// Uses last connection string in config if not specified
-    Namespace = "Models";
+    Namespace = "Data.Models";
 	
 	ClassPrefix = "";
 	ClassSuffix = "";

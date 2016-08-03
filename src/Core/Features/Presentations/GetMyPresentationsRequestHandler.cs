@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Core.Security;
 using MediatR;
-using Models;
+using Data.Models;
 using NPoco;
 
 namespace Core.Features.Presentations

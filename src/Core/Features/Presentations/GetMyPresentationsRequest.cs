@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using MediatR;
-using Models;
+using Data.Models;
 
 namespace Core.Features.Presentations
 {

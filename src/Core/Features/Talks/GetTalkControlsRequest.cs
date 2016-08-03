@@ -1,5 +1,5 @@
-﻿using MediatR;
-using Models;
+﻿using Data.Models;
+using MediatR;
 
 namespace Core.Features.Talks
 {

@@ -12,7 +12,7 @@
 
 using System;
 
-namespace Models
+namespace Data.Models
 {
     
     public partial class Version 

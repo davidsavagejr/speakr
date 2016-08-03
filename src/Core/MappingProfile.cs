@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Core.Features.Presentations;
-using Models;
+using Data.Models;
 
 namespace Core
 {

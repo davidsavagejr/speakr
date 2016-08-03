@@ -1,20 +1,25 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Security.Claims;
 using System.Web.Mvc;
+using AutoMapper;
+using Core.Features.Feedback;
 using Core.Features.Presentations;
-using Core.Features.Talks;
 using MediatR;
 using Web.Filters;
+using Web.Models;
 
 namespace Web.Controllers
 {
     public class MyController : Controller
     {
         private readonly IMediator _mediator;
+        private readonly IMapper _mapper;
 
-        public MyController(IMediator mediator)
+        public MyController(IMediator mediator, IMapper mapper)
         {
             _mediator = mediator;
+            _mapper = mapper;
         }
 
         [Authorize]
@@ -29,11 +34,17 @@ namespace Web.Controllers
         }
 
         [Authorize]
-        public ActionResult Feedback()
+        public ActionResult Feedback(long? id = null)
         {
-            var completedTalks = _mediator.Send(new GetCompletedTalksRequest());
+            if (!id.HasValue)
+            {
+                var completedTalks = _mediator.Send(new GetMyFeedbackRequest());
+                return View(completedTalks);
+            }
 
-            return View(completedTalks);
+            var feedback = _mediator.Send(new GetFeedbackForTalkRequest(id.Value));
+            var model = _mapper.Map<FeedbackView>(feedback);
+            return View("FeedbackDetails", model);
         }
 
         [Authorize, LocalOnly]

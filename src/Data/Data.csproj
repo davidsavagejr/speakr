@@ -71,6 +71,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>EzPoco.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\FeedbackForTalk.cs" />
+    <Compile Include="Models\MyFeedback.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

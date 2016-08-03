@@ -226,6 +226,7 @@
     </Compile>
     <Compile Include="MappingProfile.cs" />
     <Compile Include="Models\DeletePresentation.cs" />
+    <Compile Include="Models\FeedbackView.cs" />
     <Compile Include="Models\Presentation.cs" />
     <Compile Include="Models\PresentationCreated.cs" />
     <Compile Include="Models\WebUser.cs" />
@@ -306,6 +307,7 @@
     <Content Include="Views\My\Claims.cshtml" />
     <Content Include="Views\Talk\Controls.cshtml" />
     <Content Include="Views\My\Feedback.cshtml" />
+    <Content Include="Views\My\FeedbackDetails.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

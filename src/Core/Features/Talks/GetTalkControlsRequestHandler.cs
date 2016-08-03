@@ -1,6 +1,6 @@
 ﻿using Core.Security;
+using Data.Models;
 using MediatR;
-using Models;
 using NPoco;
 
 namespace Core.Features.Talks
