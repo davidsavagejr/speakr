@@ -1,0 +1,16 @@
+﻿@*
+    THIS IS INTENDED TO BE RENDERED INSIDE A LIST // NAVBAR
+*@
+<li role="presentation">
+    <a href="https://speakr.azurewebsites.net/.auth/login/google?post_login_redirect_url=/" title="Sign In with Google"><img src="/Images/google.png" class="logobutton"/></a>
+</li>
+<li role="presentation" class="disabled"><a alt="Sign In with Facebook" href="#" title="Sorry, Facebook isn't hooked up yet - We're working on it!"><img src="/Images/facebook.png" class="logobutton" /></a></li>
+<li role="presentation" class="disabled"><a alt="Sign In with Twitter" href="#" title="Sorry, Twitter isn't hooked up yet - We're working on it!"><img src="/Images/twitter.png" class="logobutton"/></a></li>
+@if (ViewBag.Settings.UserDebug)
+{
+<li role="presentation">
+    <a href="@Url.Action("SignIn", "Account")">
+        <span class="glyphicon glyphicon-user" title="Test With Authenticated User"></span>
+    </a>
+</li>
+}

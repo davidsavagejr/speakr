@@ -1,0 +1,18 @@
+﻿@model  Web.Models.FeedbackView
+
+<h2>Feedback from @Model.Title</h2>
+<h3>@Model.StartDate.ToString("f")</h3>
+
+@if (Model.Entries != null)
+{
+    foreach (var entry in Model.Entries)
+    {
+        <p>
+            @entry.Comments
+        </p>
+    }
+}
+else
+{
+    <p>Sorry, no one gave you feedback</p>
+}

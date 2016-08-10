@@ -1,0 +1,54 @@
+﻿@model Data.Models.Talk
+
+@section scripts
+{
+    @if (Model.IsStarted)
+    {
+        <script type="text/javascript">
+            var startDate = new Date(@Model.StartDate.Value.ToJavaScriptMilliseconds());
+            var timerStart = new Date(startDate.toLocaleString());
+            $(document).ready(function() {
+                show();
+                start();
+            });
+        </script>
+        <script type="text/javascript" src="~/Scripts/timer.js"></script>
+    }
+}
+
+<h2>Presenter Talk Controls</h2>
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            @if (Model.IsStarted)
+            {
+                <div class="navbar-header" style="display: block; width: 110px">
+                    <a class="navbar-brand" href="#">
+                        <span id="time"></span>
+                    </a>
+                </div>
+
+                using (Html.BeginForm("Complete", "Talk", FormMethod.Get, new { @class = "navbar-form navbar-left" }))
+                {
+                    @Html.HiddenFor(m => m.Id)
+                    <button class="btn btn-danger" type="submit">
+                        <span class="glyphicon glyphicon-play"></span>
+                        Complete Talk
+                    </button>
+                }
+            }
+            else
+            {
+                using (Html.BeginForm("Start", "Talk", FormMethod.Get, new {@class = "navbar-form navbar-left"}))
+                {
+                    @Html.HiddenFor(m => m.Id)
+                    <button class="btn btn-success" type="submit">
+                        <span class="glyphicon glyphicon-play"></span>
+                        Start Talk
+                    </button>
+                }
+            }
+        </div>
+    </div>
+</nav>

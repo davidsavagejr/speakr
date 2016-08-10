@@ -1,0 +1,29 @@
+﻿@if (User.Identity.IsAuthenticated)
+{
+    <text>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="@Url.Action("Presentations", "My")">Presentations <span class="badge">@ViewBag.UserPresentationCount</span></a></li>
+            <li><a href="@Url.Action("Feedback", "My")">Feedback <span class="badge">@ViewBag.FeedbackCount</span></a></li>
+            <li class="navbar-text">
+                <span class="label label-default">@User.Identity.Name</span>
+            </li>
+            @if (ViewBag.Settings.UserDebug)
+            {
+            <li>@Html.ActionLink("Claims", "Claims", "My")</li>
+            <li>@Html.ActionLink("Sign Out", "SignOut", "Account")</li>
+            }
+            else
+            {
+            <li>
+                <a href="https://speakr.azurewebsites.net/.auth/logout?post_login_redirect_url=/">Sign Out</a>
+            </li>
+            }
+        </ul>
+    </text>
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        @Html.Partial("_SigninOptions")
+    </ul>
+}
